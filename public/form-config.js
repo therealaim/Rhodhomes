@@ -1,17 +1,10 @@
-/*
- * RHODHOMES application form: single source of truth.
- * Used by the browser (form building + friendly validation) AND by the
- * server (api/submit.js) so both always validate with identical rules.
- */
 (function (root) {
   'use strict';
-
   var YES_NO = ['Yes', 'No'];
-
+  var US_STATES = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
   var sections = [
     {
-      id: 'personal',
-      title: 'Personal Information',
+      id: 'personal', title: 'Personal Information',
       intro: 'Tell us who you are. Fields marked * are required.',
       fields: [
         { name: 'firstName', label: 'First name', type: 'text', required: true, max: 60, autocomplete: 'given-name' },
@@ -21,40 +14,34 @@
         { name: 'phone', label: 'Phone number', type: 'tel', required: true, max: 25, autocomplete: 'tel', help: 'Include your country code, e.g. +1...' },
         { name: 'country', label: 'Country', type: 'text', required: true, max: 80, autocomplete: 'country-name' },
         { name: 'state', label: 'State or region', type: 'text', required: true, max: 80, autocomplete: 'address-level1' },
-        { name: 'city', label: 'City', type: 'text', required: true, max: 80, autocomplete: 'address-level2' }
+        { name: 'city', label: 'City', type: 'text', required: true, max: 80, autocomplete: 'address-level2' },
+        { name: 'housingStatus', label: 'Do you rent or own your current address?', type: 'select', required: true, options: ['Rent','Own','Live with family','Other'] },
+        { name: 'yearsAtAddress', label: 'How long at this address?', type: 'select', required: true, options: ['Less than 1 year','1 - 2 years','3 - 5 years','6 - 10 years','Over 10 years'] }
       ]
     },
     {
-      id: 'contact',
-      title: 'Contact Preferences',
+      id: 'contact', title: 'Contact Preferences',
       intro: 'How would you like RHODHOMES to contact you? Select all that apply.',
       fields: [
-        {
-          name: 'contactMethods', label: 'Preferred contact channels', type: 'checkgroup', required: true,
+        { name: 'contactMethods', label: 'Preferred contact channels', type: 'checkgroup', required: true,
           options: [
             { value: 'WhatsApp', detailLabel: 'WhatsApp number', detailPlaceholder: '+1...' },
             { value: 'Telegram', detailLabel: 'Telegram username or number', detailPlaceholder: '@username' },
             { value: 'Email', detailLabel: 'Email address to use', detailPlaceholder: 'name@example.com' },
             { value: 'SMS', detailLabel: 'SMS phone number', detailPlaceholder: '+1...' },
             { value: 'Signal', detailLabel: 'Signal number or username', detailPlaceholder: '+1...' },
-            { value: 'Zangi', detailLabel: 'Zangi number', detailPlaceholder: '+1...' },
+            { value: 'Zangi', detailLabel: 'Zangi number', detailPlaceholder: 'Zangi number' },
             { value: 'Other', detailLabel: 'Other method and contact detail', detailPlaceholder: 'e.g. CA - 707...' }
-          ]
-        },
-        {
-          name: 'contactTime', label: 'Preferred contact time', type: 'select', required: true,
-          options: ['Morning (8am - 12pm)', 'Afternoon (12pm - 4pm)', 'Evening (4pm - 8pm)', 'Any time']
-        },
+          ] },
+        { name: 'contactTime', label: 'Preferred contact time', type: 'select', required: true, options: ['Morning (8am - 12pm)','Afternoon (12pm - 4pm)','Evening (4pm - 8pm)','Any time'] },
         { name: 'contactTimeNote', label: 'Time zone or other timing note', type: 'text', required: false, max: 120, help: 'Optional.' }
       ]
     },
     {
-      id: 'platforms',
-      title: 'Social Media and Online Platforms',
+      id: 'platforms', title: 'Social Media and Online Platforms',
       intro: 'Where can you share available rental listings? Select all that apply. Never share passwords - we only need a username or link.',
       fields: [
-        {
-          name: 'platforms', label: 'Platforms', type: 'checkgroup', required: true,
+        { name: 'platforms', label: 'Platforms', type: 'checkgroup', required: true,
           options: [
             { value: 'Facebook', detailLabel: 'Facebook profile, page or group link', detailPlaceholder: 'facebook.com/...' },
             { value: 'Instagram', detailLabel: 'Instagram username or link', detailPlaceholder: '@username' },
@@ -65,88 +52,76 @@
             { value: 'WhatsApp', detailLabel: 'WhatsApp group, channel link or number', detailPlaceholder: 'Link or number' },
             { value: 'Telegram', detailLabel: 'Telegram group, channel link or username', detailPlaceholder: 't.me/... or @username' },
             { value: 'Other', detailLabel: 'Other platform name and link', detailPlaceholder: 'Platform and link' }
-          ]
-        }
+          ] }
       ]
     },
     {
-      id: 'audience',
-      title: 'Audience and Experience',
+      id: 'audience', title: 'Audience and Experience',
       intro: 'Help us understand your reach and background.',
       fields: [
         { name: 'managesCommunity', label: 'Do you manage a social media group or online community?', type: 'radio', required: true, options: YES_NO },
-        {
-          name: 'audienceSize', label: 'Audience or community size', type: 'select', required: true,
-          options: ['None yet', 'Under 500', '500 - 2,000', '2,001 - 10,000', '10,001 - 50,000', 'Over 50,000']
-        },
-        { name: 'occupation', label: 'Occupation', type: 'text', required: true, max: 100, autocomplete: 'organization-title' },
-        {
-          name: 'experience', label: 'Previous experience', type: 'checkgroup', required: true,
-          help: 'Select all that apply.',
-          options: [
-            { value: 'Referral' }, { value: 'Marketing' }, { value: 'Sales' },
-            { value: 'Content creation' }, { value: 'Community management' }, { value: 'No previous experience' }
-          ]
-        },
+        { name: 'audienceSize', label: 'Audience or community size', type: 'select', required: true, options: ['None yet','Under 500','500 - 2,000','2,001 - 10,000','10,001 - 50,000','Over 50,000'] },
+        { name: 'occupation', label: 'Occupation', type: 'select', required: true, options: ['Employed','Self-employed','Unemployed','Student','Retired','Other'], help: 'Choose one. More boxes appear based on your choice.' },
+        { name: 'employerName', label: 'Employer name', type: 'text', required: false, max: 100, showIf: 'employed', help: 'Shown if Employed / Self-employed.' },
+        { name: 'jobTitle', label: 'Post / Job title', type: 'text', required: false, max: 100, showIf: 'employed' },
+        { name: 'yearStarted', label: 'Year started', type: 'text', required: false, max: 4, showIf: 'employed', help: 'e.g. 2019' },
+        { name: 'previousEmployer', label: 'Previous employer', type: 'text', required: false, max: 100, showIf: 'retired' },
+        { name: 'employmentStartDate', label: 'Employment start date', type: 'text', required: false, max: 20, showIf: 'retired', help: 'e.g. Jan 2010' },
+        { name: 'retiredDate', label: 'Retired date', type: 'text', required: false, max: 20, showIf: 'retired', help: 'e.g. Dec 2024' },
+        { name: 'hasRetirementAccount', label: 'Do you have a retirement investment account like 401k?', type: 'radio', required: false, options: YES_NO, showIf: 'retired' },
+        { name: 'canProvidePaystub', label: 'Can you provide a paystub if requested later?', type: 'radio', required: false, options: YES_NO, showIf: 'retired', help: 'Do NOT upload a paystub here.' },
+        { name: 'experience', label: 'Previous experience', type: 'checkgroup', required: true, help: 'Select all that apply.',
+          options: [{ value: 'Referral' },{ value: 'Marketing' },{ value: 'Sales' },{ value: 'Content creation' },{ value: 'Community management' },{ value: 'No previous experience' }] },
         { name: 'experienceExplanation', label: 'Explain your relevant experience', type: 'textarea', required: false, max: 1500, help: 'Optional.' }
       ]
     },
     {
-      id: 'interests',
-      title: 'Rental Referral Interests',
+      id: 'interests', title: 'Rental Referral Interests',
       intro: 'Tell us where and how you would share available rental listings.',
       fields: [
-        { name: 'locations', label: 'Locations or areas where you can share rental listings', type: 'textarea', required: true, max: 1000 },
-        {
-          name: 'propertyTypes', label: 'Property types you are interested in promoting', type: 'checkgroup', required: true,
-          options: [
-            { value: 'Self-contained / studio' }, { value: '1-bedroom' }, { value: '2-bedroom' },
-            { value: '3-bedroom or larger' }, { value: 'Shared apartment' }, { value: 'Student accommodation' },
-            { value: 'Short-let' }, { value: 'Commercial space' }, { value: 'Other' }
-          ]
-        },
+        { name: 'locations', label: 'States where you can share rental listings (select all that apply)', type: 'checkgroup', required: true, options: US_STATES.map(function(s){return {value:s};}) },
+        { name: 'propertyTypes', label: 'Property types you are interested in promoting', type: 'checkgroup', required: true,
+          options: [{ value: 'Self-contained / studio' },{ value: '1-bedroom' },{ value: '2-bedroom' },{ value: '3-bedroom or larger' },{ value: 'Shared apartment' },{ value: 'Student accommodation' },{ value: 'Short-let' },{ value: 'Commercial space' },{ value: 'Other' }] },
         { name: 'multipleCities', label: 'Can you cover multiple cities?', type: 'radio', required: true, options: YES_NO },
-        {
-          name: 'availability', label: 'Availability', type: 'select', required: true,
-          options: ['Under 5 hours a week', '5 - 10 hours a week', '10 - 20 hours a week', 'Over 20 hours a week']
-        },
-        {
-          name: 'schedule', label: 'Preferred participation schedule', type: 'select', required: true,
-          options: ['Weekdays', 'Weekends', 'Evenings', 'Flexible']
-        },
-        { name: 'sharingPlan', label: 'How do you plan to share available listings?', type: 'textarea', required: true, max: 1500 },
-        { name: 'motivation', label: 'Why are you interested in joining RHODHOMES?', type: 'textarea', required: true, max: 1500 }
+        { name: 'availability', label: 'Availability', type: 'select', required: true, options: ['Under 5 hours a week','5 - 10 hours a week','10 - 20 hours a week','Over 20 hours a week'] },
+        { name: 'schedule', label: 'Preferred participation schedule', type: 'select', required: true, options: ['Weekdays','Weekends','Evenings','Flexible'] },
+        { name: 'sharingPlan', label: 'How do you plan to share available listings?', type: 'select', required: true, options: ['WhatsApp Status','WhatsApp Groups / Channels','Facebook Groups / Page','Instagram / TikTok','Email List / Newsletter','In-person / Community','Word of mouth','Other'] },
+        { name: 'sharingPlanOther', label: 'If Other, explain your sharing plan', type: 'textarea', required: false, max: 1000, help: 'Optional unless you chose Other.' },
+        { name: 'motivation', label: 'Why are you interested in joining RHODHOMES?', type: 'select', required: true, options: ['Extra income','Help my community find rentals','Build a career in real estate','Flexible hours / work from anywhere','Learn the property market','Meet new people / networking','Other'] },
+        { name: 'motivationOther', label: 'If Other, explain your motivation', type: 'textarea', required: false, max: 1000, help: 'Optional unless you chose Other.' }
       ]
     },
     {
-      id: 'payment',
-      title: 'Payment Preferences',
+      id: 'payment', title: 'Payment Preferences',
       intro: 'Only your preferred method and country are needed now. Do NOT enter bank account numbers, PINs, card details or any passwords.',
       fields: [
-        {
-          name: 'paymentMethod', label: 'Preferred payment method', type: 'select', required: true,
-          options: ['Bank transfer', 'Mobile money', 'PayPal', 'Wise', 'Other', 'Discuss later']
-        },
+        { name: 'paymentMethod', label: 'Preferred payment method', type: 'select', required: true, options: ['Bank transfer','Debit Card','Credit Card','Mobile money','PayPal','Wise','Other','Discuss later'] },
+        { name: 'bankInstitution', label: 'Bank / institution you bank with (optional)', type: 'text', required: false, max: 100, showIf: 'bank', help: 'Shown if Bank transfer. For receiving payouts only.' },
+        { name: 'yearsWithBank', label: 'How many years with this bank? (optional)', type: 'select', required: false, options: ['Less than 1 year','1 - 2 years','3 - 5 years','6 - 10 years','Over 10 years'], showIf: 'bank', help: 'We recommend a new account with our partner bank for payouts. This is optional.' },
         { name: 'paymentCountry', label: 'Payment country', type: 'text', required: true, max: 80 }
       ]
     }
   ];
-
   var consents = [
     { name: 'truth', label: 'I confirm that the information I have provided is true and accurate to the best of my knowledge.' },
     { name: 'privacy', label: 'I consent to RHODHOMES collecting and using my information to review my application and contact me.' },
     { name: 'terms', label: 'I accept the programme terms, and I understand that submitting an application does not guarantee acceptance, referrals, compensation or earnings.' }
   ];
-
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   var PHONE_RE = /^\+?[0-9][0-9\s\-().]{5,24}$/;
-
   function optVal(o) { return typeof o === 'string' ? o : o.value; }
-
+  function isVisible(f, data) {
+    if (!f.showIf) return true;
+    var occ = (data.occupation || '');
+    var pay = (data.paymentMethod || '');
+    if (f.showIf === 'employed') return occ === 'Employed' || occ === 'Self-employed';
+    if (f.showIf === 'retired') return occ === 'Retired';
+    if (f.showIf === 'bank') return pay === 'Bank transfer';
+    return true;
+  }
   function validateField(f, data) {
-    var v = data[f.name];
-    var i, val;
-
+    if (!isVisible(f, data)) return '';
+    var v = data[f.name]; var i, val;
     if (f.type === 'checkgroup') {
       var arr = Array.isArray(v) ? v : [];
       var details = (data[f.name + 'Details'] && typeof data[f.name + 'Details'] === 'object') ? data[f.name + 'Details'] : {};
@@ -163,7 +138,6 @@
       }
       return '';
     }
-
     val = typeof v === 'string' ? v.trim() : '';
     if (!val) return f.required ? 'This field is required.' : '';
     if (val.length > (f.max || 200)) return 'Too long (maximum ' + (f.max || 200) + ' characters).';
@@ -176,59 +150,51 @@
     }
     return '';
   }
-
   function validateSection(section, data) {
     var errors = {};
     for (var i = 0; i < section.fields.length; i++) {
       var msg = validateField(section.fields[i], data);
       if (msg) errors[section.fields[i].name] = msg;
     }
-    return errors;
-  }
-
-  function validateConsents(data) {
-    var errors = {};
-    var c = (data.consents && typeof data.consents === 'object') ? data.consents : {};
-    for (var i = 0; i < consents.length; i++) {
-      if (c[consents[i].name] !== true) errors[consents[i].name] = 'This confirmation is required.';
+    // Conditional required: employed / retired
+    if (section.id === 'audience') {
+      if ((data.occupation === 'Employed' || data.occupation === 'Self-employed')) {
+        if (!String(data.employerName||'').trim()) errors.employerName = 'Please enter employer name.';
+        if (!String(data.jobTitle||'').trim()) errors.jobTitle = 'Please enter post / job title.';
+        if (!String(data.yearStarted||'').trim()) errors.yearStarted = 'Please enter year started.';
+      }
+      if (data.occupation === 'Retired') {
+        if (!String(data.previousEmployer||'').trim()) errors.previousEmployer = 'Please enter previous employer.';
+        if (!String(data.employmentStartDate||'').trim()) errors.employmentStartDate = 'Please enter start date.';
+        if (!String(data.retiredDate||'').trim()) errors.retiredDate = 'Please enter retired date.';
+      }
     }
     return errors;
   }
-
-  /* Build a clean object containing ONLY known fields, trimmed and clipped. */
+  function validateConsents(data) {
+    var errors = {}; var c = (data.consents && typeof data.consents === 'object') ? data.consents : {};
+    for (var i = 0; i < consents.length; i++) { if (c[consents[i].name] !== true) errors[consents[i].name] = 'This confirmation is required.'; }
+    return errors;
+  }
   function sanitize(data) {
-    var out = {};
-    data = data || {};
+    var out = {}; data = data || {};
     sections.forEach(function (s) {
       s.fields.forEach(function (f) {
+        if (!isVisible(f, data)) { out[f.name] = (f.type === 'checkgroup' ? [] : ''); if (f.type==='checkgroup') out[f.name+'Details']={}; return; }
         if (f.type === 'checkgroup') {
           var arr = Array.isArray(data[f.name]) ? data[f.name] : [];
           var allowed = f.options.map(optVal);
           out[f.name] = arr.filter(function (x) { return allowed.indexOf(x) !== -1; });
           var det = (data[f.name + 'Details'] && typeof data[f.name + 'Details'] === 'object') ? data[f.name + 'Details'] : {};
           var cleanDet = {};
-          out[f.name].forEach(function (x) {
-            if (det[x] != null && String(det[x]).trim()) cleanDet[x] = String(det[x]).trim().slice(0, 300);
-          });
+          out[f.name].forEach(function (x) { if (det[x] != null && String(det[x]).trim()) cleanDet[x] = String(det[x]).trim().slice(0, 300); });
           out[f.name + 'Details'] = cleanDet;
-        } else {
-          out[f.name] = typeof data[f.name] === 'string' ? data[f.name].trim().slice(0, f.max || 200) : '';
-        }
+        } else { out[f.name] = typeof data[f.name] === 'string' ? data[f.name].trim().slice(0, f.max || 200) : ''; }
       });
     });
     return out;
   }
-
-  var api = {
-    sections: sections,
-    consents: consents,
-    optVal: optVal,
-    validateField: validateField,
-    validateSection: validateSection,
-    validateConsents: validateConsents,
-    sanitize: sanitize
-  };
-
+  var api = { sections: sections, consents: consents, optVal: optVal, validateField: validateField, validateSection: validateSection, validateConsents: validateConsents, sanitize: sanitize, isVisible: isVisible, US_STATES: US_STATES };
   if (typeof module !== 'undefined' && module.exports) { module.exports = api; }
   else { root.RH_CONFIG = api; }
 })(typeof self !== 'undefined' ? self : this);
