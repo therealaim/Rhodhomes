@@ -1,10 +1,1 @@
-
-'use strict';
-const {all}=require('./_store.js');
-const {buildManualTemplate}=require('./_email.js');
-module.exports=async (req,res)=>{
-  const key=req.query.key||req.headers['x-admin-key']||'';
-  if(key!==process.env.ADMIN_PASSWORD && key!=='rhod1234') return res.status(401).json({ok:false,message:'Wrong admin password'});
-  const list=all().map(r=>({...r, manualTemplate: buildManualTemplate(r.data||{}, r.ref)}));
-  return res.status(200).json({ok:true, total:list.length, submissions:list});
-};
+global.__RH_STORE=global.__RH_STORE||[]; export default function handler(req,res){ if(req.query.password!==process.env.ADMIN_PASSWORD) return res.status(401).json({error:'Unauthorized'}); let items=[...global.__RH_STORE]; let q=(req.query.q||'').toLowerCase(); let ty=req.query.type||''; if(ty) items=items.filter(x=>x.type===ty); if(q) items=items.filter(x=>JSON.stringify(x).toLowerCase().includes(q)); return res.json({total:items.length,applications:items.filter(x=>x.type==='Application').length,enquiries:items.filter(x=>x.type!=='Application').length,items:items.reverse()}); }
