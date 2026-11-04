@@ -1,0 +1,104 @@
+[
+  {
+    "ref": "RH-20261104-BPGDOU",
+    "type": "Partner Application",
+    "createdAt": "2026-11-04T11:24:42.109Z",
+    "email": "rhodoracarson@gmail.com",
+    "name": "Ernest",
+    "phone": "17077128071",
+    "data": {
+      "type": "Buy",
+      "consent": true,
+      "firstName": "Ernest",
+      "lastName": "Lozano",
+      "email": "rhodoracarson@gmail.com",
+      "phone": "17077128071",
+      "state": "California",
+      "city": "Fairfield",
+      "contactPreference": "Text message",
+      "propertyType": "Land",
+      "bedrooms": "3",
+      "timeline": "1 - 3 months"
+    },
+    "status": "New"
+  },
+  {
+    "ref": "RH-20261104-99TOS5",
+    "type": "Partner Application",
+    "createdAt": "2026-11-04T11:24:08.405Z",
+    "email": "rhodoracarson@gmail.com",
+    "name": "Ernest",
+    "phone": "17077128071",
+    "data": {
+      "type": "Rent",
+      "consent": true,
+      "firstName": "Ernest",
+      "lastName": "Lozano",
+      "email": "rhodoracarson@gmail.com",
+      "phone": "17077128071",
+      "state": "California",
+      "city": "Fairfield",
+      "contactPreference": "WhatsApp",
+      "propertyType": "Land",
+      "bedrooms": "2",
+      "timeline": "3 - 6 months"
+    },
+    "status": "New"
+  },
+  {
+    "ref": "RH-20261104-8N2T62",
+    "type": "Partner Application",
+    "createdAt": "2026-11-04T11:23:19.436Z",
+    "email": "rhodoracarson@gmail.com",
+    "name": "Ernest",
+    "phone": "17077128071",
+    "data": {
+      "consents": {
+        "truth": true,
+        "privacy": true,
+        "terms": true
+      },
+      "firstName": "Ernest",
+      "middleName": "G",
+      "lastName": "Lozano",
+      "email": "rhodoracarson@gmail.com",
+      "phone": "17077128071",
+      "country": "United States",
+      "state": "CA",
+      "city": "Fairfield",
+      "contactMethodsDetails": {
+        "WhatsApp": "62839397283039"
+      },
+      "contactMethods": [
+        "WhatsApp"
+      ],
+      "contactTime": "Afternoon (12pm - 4pm)",
+      "platformsDetails": {
+        "Facebook": "Gaks"
+      },
+      "platforms": [
+        "Facebook"
+      ],
+      "experienceDetails": {},
+      "managesCommunity": "Yes",
+      "audienceSize": "10,001 - 50,000",
+      "occupation": "Bskdj",
+      "experience": [
+        "Referral"
+      ],
+      "propertyTypesDetails": {},
+      "locations": "Vsmdb",
+      "propertyTypes": [
+        "Self-contained / studio"
+      ],
+      "multipleCities": "Yes",
+      "availability": "5 - 10 hours a week",
+      "schedule": "Weekends",
+      "sharingPlan": "Bsmd",
+      "motivation": "Bsmd",
+      "paymentMethod": "PayPal",
+      "paymentCountry": "Bskd"
+    },
+    "status": "New"
+  }
+]

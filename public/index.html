@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RHODHOMES | Rent, Buy or Sell Property Across the United States</title>
+  <meta name="description" content="RHODHOMES helps people across the United States take their next step in renting, buying or selling property. Send an enquiry today.">
+  <meta name="theme-color" content="#08251B">
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="wordmark" href="/" aria-label="RHODHOMES home"><span class="w-rhod">RHOD</span><span class="w-homes">HOMES</span></a>
+    <nav class="topnav">
+      <a class="topbar-link plain" href="apply.html">Become a Partner</a>
+      <a class="topbar-link" href="#enquire">Enquire</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-logo"><img src="logo.png" alt="RHODHOMES - Rental Opportunities, Flexible Work, Partnerships" width="900" height="406"></div>
+      <div class="hero-copy">
+        <p class="eyebrow">Rent &bull; Buy &bull; Sell</p>
+        <h1>Your Next Move in Property Starts Here</h1>
+        <p class="lead">RHODHOMES helps people across the United States take their next step in renting, buying or selling property. Tell us what you are looking for and our team will get back to you personally through the contact method you choose.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#enquire">MAKE AN ENQUIRY</a>
+          <a class="btn btn-light" href="apply.html">BECOME A REFERRAL PARTNER</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section">
+    <h2>How can we help?</h2>
+    <div class="cards">
+      <article class="card">
+        <h3>Rent</h3>
+        <p>Looking for a place to rent? Tell us the area, property type and budget you have in mind.</p>
+        <button type="button" class="btn btn-ghost btn-sm js-type" data-type="Rent">Rent enquiry</button>
+      </article>
+      <article class="card">
+        <h3>Buy</h3>
+        <p>Ready to buy or just exploring? Share what you want and your timeline, and we will follow up.</p>
+        <button type="button" class="btn btn-ghost btn-sm js-type" data-type="Buy">Buy enquiry</button>
+      </article>
+      <article class="card">
+        <h3>Sell</h3>
+        <p>Own a property you want to sell? Send us the basics and we will contact you about next steps.</p>
+        <button type="button" class="btn btn-ghost btn-sm js-type" data-type="Sell">Sell enquiry</button>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap section">
+    <h2>How it works</h2>
+    <ol class="steps">
+      <li><span class="num">1</span><div><strong>Send an enquiry</strong><p>Choose rent, buy or sell and complete the short form below. It is free.</p></div></li>
+      <li><span class="num">2</span><div><strong>We review it</strong><p>A member of the RHODHOMES team reads your request.</p></div></li>
+      <li><span class="num">3</span><div><strong>We contact you</strong><p>You hear from us through the contact method you prefer to discuss next steps.</p></div></li>
+    </ol>
+  </section>
+
+  <section id="enquire" class="apply">
+    <div class="wrap narrow">
+      <h2>Send an Enquiry</h2>
+      <noscript><p class="notice">JavaScript is required for this form. Please enable it and reload the page.</p></noscript>
+
+      <div id="enqPanel" class="panel">
+        <form id="enqForm" novalidate autocomplete="on">
+          <div class="hp" aria-hidden="true"><label>Website <input type="text" id="enqWebsite" name="website" tabindex="-1" autocomplete="off"></label></div>
+          <div id="enqFields"></div>
+          <div id="enqAlert" class="alert" role="alert" hidden></div>
+          <div class="nav"><button type="button" class="btn btn-primary" id="enqSubmit">SEND ENQUIRY</button></div>
+        </form>
+      </div>
+      <div id="enqSuccess" class="panel success" hidden tabindex="-1"></div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="wrap narrow">
+      <h2>Have a network of people looking for homes?</h2>
+      <p>Apply to join the RHODHOMES Rental Referral Partner Network and responsibly share available rental listings. Applications are reviewed, and submitting one does not guarantee acceptance, referrals, compensation or earnings. There is no application fee.</p>
+      <a class="btn btn-primary" href="apply.html">APPLY TO BECOME A PARTNER</a>
+    </div>
+  </section>
+
+  <section class="wrap section about-us">
+    <h2>About RHODHOMES</h2>
+    <p>RHODHOMES is a property enquiry and referral network based in Irvine, California, serving people across the United States. We connect people who want to rent, buy or sell property with the right next steps, and we work with referral partners who help share available rental opportunities.</p>
+    <p class="notice"><strong>Fair housing:</strong> We are committed to treating every enquiry fairly and without discrimination based on race, color, religion, sex, disability, familial status or national origin.</p>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p><span class="w-rhod">RHOD</span><span class="w-homes">HOMES</span> &ndash; Irvine, California, USA</p>
+    <p class="small">Enquiries are requests for information only and do not guarantee availability, pricing or any transaction. Information on this site is general and is not legal, financial or real estate advice. RHODHOMES is not affiliated with, approved by or endorsed by any government agency, housing authority or real estate company. We never ask for passwords, PINs or card security codes.</p>
+    <p class="small"><a class="flink" href="apply.html">Become a partner</a></p>
+  </div>
+</footer>
+
+<script src="enquiry-config.js"></script>
+<script src="home.js"></script>
+<script>
+function copyRef(){ const el=document.querySelector('[data-ref], .ref-code, #refCode'); const t=el?el.textContent.trim():''; if(t){ navigator.clipboard.writeText(t).then(()=>alert('Copied: '+t)); } }
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.ref-box, [data-ref-box]').forEach(box=>{
+    if(!box.querySelector('.copy-btn')){ const b=document.createElement('button'); b.className='copy-btn'; b.textContent='Copy Reference'; b.style.cssText='background:#0a2e1f;color:#fff;border:0;padding:12px;width:100%;border-radius:8px;margin-top:10px;font-weight:bold;'; b.onclick=()=>{ const ref=box.querySelector('[data-ref]')?.textContent||box.textContent.match(/[A-Z]+-\d+-\w+/)?.[0]||''; navigator.clipboard.writeText(ref).then(()=>{b.textContent='Copied!'; setTimeout(()=>b.textContent='Copy Reference',2000)}); }; box.after(b); }
+  });
+  // Also inject copy button right after any element showing RH- or ENQ-
+  setTimeout(()=>{
+    const els=[...document.querySelectorAll('*')].filter(e=>e.children.length===0 && /^(RH|ENQ)-\d+-/.test(e.textContent.trim()));
+    els.forEach(e=>{ if(e.nextElementSibling?.classList?.contains('copy-btn')) return; const b=document.createElement('button'); b.className='copy-btn'; b.textContent='Copy Reference'; b.style.cssText='background:#0a2e1f;color:#fff;border:0;padding:12px;width:100%;border-radius:8px;margin-top:10px;font-weight:bold;'; b.onclick=()=>{ navigator.clipboard.writeText(e.textContent.trim()).then(()=>{b.textContent='Copied!'; setTimeout(()=>b.textContent='Copy Reference',2000)}); }; e.after(b); const note=document.createElement('p'); note.style.cssText='font-size:13px;color:#555;text-align:center;'; note.textContent='Please do NOT submit twice. Wait 24hrs for follow-up from one of our agents.'; b.after(note); });
+  },500);
+});
+</script><script src="rhod-fix.js"></script></body>
+</html>

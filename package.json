@@ -1,0 +1,7 @@
+{
+  "name": "rhodhomes-application",
+  "version": "1.0.0",
+  "private": true,
+  "description": "RHODHOMES Rental Referral Partner application website (Vercel)",
+  "engines": { "node": ">=18" }
+}

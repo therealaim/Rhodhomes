@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RHODHOMES | Rental Referral Partner Application</title>
+  <meta name="description" content="Apply to join the RHODHOMES Rental Referral Partner Network.">
+  <meta name="theme-color" content="#08251B">
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="wordmark" href="/" aria-label="RHODHOMES home"><span class="w-rhod">RHOD</span><span class="w-homes">HOMES</span></a>
+    <nav class="topnav"><a class="topbar-link plain" href="/">Home</a><a class="topbar-link" href="#apply">Apply</a></nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-logo"><img src="logo.png" alt="RHODHOMES - Rental Opportunities, Flexible Work, Partnerships" width="900" height="406"></div>
+      <div class="hero-copy">
+        <p class="eyebrow">Rental Referral Partner Network</p>
+        <h1>Turn Your Network Into Rental Connections</h1>
+        <p class="lead">Discover an opportunity to become part of the RHODHOMES Rental Referral Partner Network. We welcome individuals who can responsibly share available rental listings and introduce prospective renters to housing opportunities.</p>
+        <a class="btn btn-primary" href="#apply">APPLY TO BECOME A PARTNER</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="about wrap">
+    <h2>About the opportunity</h2>
+    <div class="cards">
+      <article class="card"><h3>What RHODHOMES does</h3><p>RHODHOMES connects prospective renters with available rental housing opportunities.</p></article>
+      <article class="card"><h3>What partners do</h3><p>Referral partners responsibly share available rental listings with their networks and introduce interested renters.</p></article>
+      <article class="card"><h3>Free to apply</h3><p>There is no application fee. Every application is reviewed before any communication about next steps.</p></article>
+    </div>
+    <p class="notice"><strong>Please note:</strong> Submitting an application does not guarantee acceptance, referrals, compensation or earnings. All applications are subject to review. Any partner compensation, if offered, will be governed by the applicable written partner agreement and its conditions.</p>
+  </section>
+
+  <section id="apply" class="apply">
+    <div class="wrap narrow">
+      <h2>Partner Application</h2>
+      <noscript><p class="notice">JavaScript is required to complete this application. Please enable it and reload the page.</p></noscript>
+
+      <div id="appRoot" class="panel">
+        <div class="progress" aria-label="Application progress">
+          <div class="progress-meta"><span id="stepLabel"></span><span id="stepCount"></span></div>
+          <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="bar"><div class="bar-fill" id="barFill"></div></div>
+        </div>
+
+        <form id="form" novalidate autocomplete="on">
+          <!-- hidden spam trap: real users never see or fill this -->
+          <div class="hp" aria-hidden="true">
+            <label>Website <input type="text" name="website" id="website" tabindex="-1" autocomplete="off"></label>
+          </div>
+
+          <div id="stepBody"></div>
+
+          <div id="formAlert" class="alert" role="alert" hidden></div>
+
+          <div class="nav">
+            <button type="button" class="btn btn-ghost" id="backBtn">Back</button>
+            <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="successRoot" class="panel success" hidden tabindex="-1"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p><span class="w-rhod">RHOD</span><span class="w-homes">HOMES</span> &ndash; Rental Referral Partner Network</p>
+    <p class="small">RHODHOMES is not affiliated with, approved by or endorsed by any government agency, housing authority or real estate company. We never ask for passwords, PINs or card security codes.</p>
+  </div>
+</footer>
+
+<script src="form-config.js"></script>
+<script src="app.js"></script>
+<script>
+function copyRef(){ const el=document.querySelector('[data-ref], .ref-code, #refCode'); const t=el?el.textContent.trim():''; if(t){ navigator.clipboard.writeText(t).then(()=>alert('Copied: '+t)); } }
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.ref-box, [data-ref-box]').forEach(box=>{
+    if(!box.querySelector('.copy-btn')){ const b=document.createElement('button'); b.className='copy-btn'; b.textContent='Copy Reference'; b.style.cssText='background:#0a2e1f;color:#fff;border:0;padding:12px;width:100%;border-radius:8px;margin-top:10px;font-weight:bold;'; b.onclick=()=>{ const ref=box.querySelector('[data-ref]')?.textContent||box.textContent.match(/[A-Z]+-\d+-\w+/)?.[0]||''; navigator.clipboard.writeText(ref).then(()=>{b.textContent='Copied!'; setTimeout(()=>b.textContent='Copy Reference',2000)}); }; box.after(b); }
+  });
+  // Also inject copy button right after any element showing RH- or ENQ-
+  setTimeout(()=>{
+    const els=[...document.querySelectorAll('*')].filter(e=>e.children.length===0 && /^(RH|ENQ)-\d+-/.test(e.textContent.trim()));
+    els.forEach(e=>{ if(e.nextElementSibling?.classList?.contains('copy-btn')) return; const b=document.createElement('button'); b.className='copy-btn'; b.textContent='Copy Reference'; b.style.cssText='background:#0a2e1f;color:#fff;border:0;padding:12px;width:100%;border-radius:8px;margin-top:10px;font-weight:bold;'; b.onclick=()=>{ navigator.clipboard.writeText(e.textContent.trim()).then(()=>{b.textContent='Copied!'; setTimeout(()=>b.textContent='Copy Reference',2000)}); }; e.after(b); const note=document.createElement('p'); note.style.cssText='font-size:13px;color:#555;text-align:center;'; note.textContent='Please do NOT submit twice. Wait 24hrs for follow-up from one of our agents.'; b.after(note); });
+  },500);
+});
+</script><script src="rhod-fix.js"></script></body>
+</html>
