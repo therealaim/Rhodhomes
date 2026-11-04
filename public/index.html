@@ -8,8 +8,19 @@
   <meta name="theme-color" content="#08251B">
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+<style>
+.rh-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.08);border:1px solid #eef2ef}
+.rh-card img{width:100%;height:200px;object-fit:cover;display:block}
+.rh-card-body{padding:18px}
+.rh-btn{display:inline-block;background:#0a3d2e;color:#fff;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:800;margin-top:10px}
+.rh-btn-green{background:#1db954}
+.rh-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;max-width:1100px;margin:24px auto;padding:0 14px}
+.hamburger{font-size:26px;background:none;border:0;color:#fff;cursor:pointer}
+.mobile-menu{display:none;background:#06281e;padding:14px}
+.mobile-menu a{display:block;color:#fff;padding:12px;text-decoration:none;font-weight:700;border-bottom:1px solid #ffffff22}
+.stars{color:#f5b301;font-size:20px}
+</style></head>
+<body><div class="mobile-menu" id="mmenu"><a href="/rent.html">🏠 Rent</a><a href="/buy.html">🏡 Buy</a><a href="/sell.html">🔑 Sell</a><a href="/apply.html">🤝 Become a Referral Partner</a><a href="#footer-contact">✉️ Contact</a></div><script>function toggleMenu(){var m=document.getElementById('mmenu');m.style.display=m.style.display==='block'?'none':'block';}</script>
 
 <header class="topbar">
   <div class="wrap topbar-inner">
@@ -22,31 +33,7 @@
 </header>
 
 <main>
-  <section class="hero">
-    <div class="wrap hero-inner">
-      <div class="hero-logo"><img src="logo.png" alt="RHODHOMES - Rental Opportunities, Flexible Work, Partnerships" width="900" height="406"></div>
-      <div class="hero-copy">
-        <p class="eyebrow">Rent &bull; Buy &bull; Sell</p>
-        <h1>Your Next Move in Property Starts Here</h1>
-        <p class="lead">RHODHOMES helps people across the United States take their next step in renting, buying or selling property. Tell us what you are looking for and our team will get back to you personally through the contact method you choose.</p>
-        <div class="btn-row">
-          <a class="btn btn-primary" href="#enquire">MAKE AN ENQUIRY</a>
-          <a class="btn btn-light" href="apply.html">BECOME A REFERRAL PARTNER</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="wrap section">
-    <h2>How it works</h2>
-    <ol class="steps">
-      <li><span class="num">1</span><div><strong>Send an enquiry</strong><p>Choose rent, buy or sell and complete the short form below. It is free.</p></div></li>
-      <li><span class="num">2</span><div><strong>We review it</strong><p>A member of the RHODHOMES team reads your request.</p></div></li>
-      <li><span class="num">3</span><div><strong>We contact you</strong><p>You hear from us through the contact method you prefer to discuss next steps.</p></div></li>
-    </ol>
-  </section>
-
-  <section style="max-width:1100px;margin:24px auto;padding:0 14px"><h2>Rent / Buy / Sell</h2><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px"><div style="background:#fff;border-radius:14px;overflow:hidden"><img src="/images/rent.jpg" style="width:100%;height:160px;object-fit:cover"><div style="padding:16px"><b>Rent</b><p>Find a rental that fits your budget.</p><a href="#enquiry">Send an Enquiry</a></div></div><div style="background:#fff;border-radius:14px;overflow:hidden"><img src="/images/buy.jpg" style="width:100%;height:160px;object-fit:cover"><div style="padding:16px"><b>Buy</b><p>Explore homes to buy.</p><a href="#enquiry">Send an Enquiry</a></div></div><div style="background:#fff;border-radius:14px;overflow:hidden"><img src="/images/sell.jpg" style="width:100%;height:160px;object-fit:cover"><div style="padding:16px"><b>Sell / Partner</b><p>Share listings and grow.</p><a href="/apply.html">Become a Partner</a></div></div></div></section><section style="max-width:1100px;margin:24px auto;padding:0 14px"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;background:#fff;border-radius:16px;overflow:hidden"><img src="/images/referral.jpg" style="width:100%;min-height:220px;object-fit:cover"><div style="padding:18px"><h2>Referral Partner Programme</h2><p>Share listings with your community. No experience needed.</p><a href="/apply.html" style="display:inline-block;background:#0a3d2e;color:#fff;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:800">Become a Referral Partner</a></div></div></section>
+  <section style="max-width:1100px;margin:24px auto;padding:0 14px"><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;background:#fff;border-radius:16px;overflow:hidden"><img src="/images/referral.jpg" style="width:100%;min-height:220px;object-fit:cover"><div style="padding:18px"><h2>Referral Partner Programme</h2><p>Share listings with your community. No experience needed.</p><a href="/apply.html" style="display:inline-block;background:#0a3d2e;color:#fff;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:800">Become a Referral Partner</a></div></div></section>
 <section id="enquire" class="apply">
     <div class="wrap narrow">
       <h2>Send an Enquiry</h2>
@@ -102,5 +89,12 @@ document.addEventListener('DOMContentLoaded',()=>{
   },500);
 });
 </script><script src="rhod-fix.js"></script><!-- RHODHOMES FOOTER --><footer style="background:#06281e;color:#fff;padding:28px 14px;margin-top:30px"><div style="max-width:1100px;margin:auto"><div style="display:flex;gap:12px;align-items:center;margin-bottom:16px"><img src="/images/banner.jpg" style="width:110px;border-radius:10px"><div><b>RHODHOMES</b><br><small>Irvine, California - Rental Referral Partner Network</small></div></div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px"><div style="background:#fff;color:#111;border-radius:14px;padding:16px"><b>FAQs</b><details><summary>Is it free to apply?</summary><p>Yes. No fee.</p></details><details><summary>Do I earn guaranteed money?</summary><p>No. No guarantee.</p></details><details><summary>Do I need experience?</summary><p>No. We guide you.</p></details></div><div style="background:#fff;color:#111;border-radius:14px;padding:16px"><b>Privacy Policy</b><p>We only use your details to review your enquiry and contact you.</p><p>We NEVER ask for passwords, PINs, card numbers or ID numbers.</p><p>Fair Housing: No discrimination.</p></div><div style="background:#fff;color:#111;border-radius:14px;padding:16px"><b>Contact Us</b><form id="footer-contact" onsubmit="return footerContact(event)" style="display:flex;flex-direction:column;gap:8px"><input name="name" placeholder="Your name *" required><input name="email" type="email" placeholder="Email *" required><textarea name="message" placeholder="Message *" required rows="3"></textarea><button style="background:#1db954;color:#fff;padding:12px;border:0;border-radius:10px;font-weight:800">Send Message</button><small id="footer-contact-msg"></small></form><script>async function footerContact(e){e.preventDefault();var f=e.target;var d={name:f.name.value,email:f.email.value,message:f.message.value,type:"Footer Contact"};var r=await fetch("/api/enquiry",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(d)});document.getElementById("footer-contact-msg").textContent=r.ok?"Sent!":"Could not send.";if(r.ok) f.reset();return false;}</script></div></div></div></footer>
-</body>
+<section><h2 style="max-width:1100px;margin:24px auto 0;padding:0 14px">Rent / Buy / Sell</h2><div class="rh-grid">
+<div class="rh-card"><img src="/images/rent.jpg"><div class="rh-card-body"><h3>Rent</h3><p>Find a rental that fits your budget, location and timeline. Tell us your city, budget, bedrooms and move-in date — we guide you on next steps. No fees to enquire. Perfect for first-time renters, relocations and families moving to a new state.</p><a class="rh-btn rh-btn-green" href="/rent.html">Rent a Home →</a></div></div>
+<div class="rh-card"><img src="/images/buy.jpg"><div class="rh-card-body"><h3>Buy</h3><p>Explore homes to buy across US states. Share your preferred state, city, budget and property type. We connect you with the right next steps — no pressure, no hidden fees. Ideal for first-time buyers and movers.</p><a class="rh-btn" href="/buy.html">Buy a Home →</a></div></div>
+<div class="rh-card"><img src="/images/sell.jpg"><div class="rh-card-body"><h3>Sell / Partner</h3><p>Want to sell or share listings? Join as a partner and share available homes with your community. We review every application, guide new partners step-by-step, and handle enquiries together.</p><a class="rh-btn" href="/sell.html">Sell / Partner →</a></div></div>
+<div class="rh-card"><img src="/images/referral.jpg"><div class="rh-card-body"><h3>Referral Partner Programme</h3><p>Share available rental listings with your community on WhatsApp, Facebook and Instagram. No experience needed. Choose your states, share responsibly, we handle enquiries with you. Free to apply.</p><a class="rh-btn rh-btn-green" href="/apply.html">Become a Referral Partner →</a></div></div>
+</div></section>
+<section style="max-width:1100px;margin:24px auto;padding:0 14px"><h2>⭐ What People Say</h2><div class="rh-grid"><div class="rh-card"><div class="rh-card-body"><div class="stars">★★★★★</div><p>"Very clear process. They replied fast and explained every step. I knew what to do next."</p><b>— Amara, Texas</b></div></div><div class="rh-card"><div class="rh-card-body"><div class="stars">★★★★★</div><p>"As a new partner, I got guidance from day one. No experience needed, just willingness to share."</p><b>— Daniel, California</b></div></div><div class="rh-card"><div class="rh-card-body"><div class="stars">★★★★☆</div><p>"Simple enquiry, no hidden fees. The team was honest about what to expect."</p><b>— Fatima, Florida</b></div></div></div><p style="text-align:center"><b>4.8 / 5 Average Rating</b> <span class="stars">★★★★★</span> based on partner & enquiry feedback</p></section>
+<section style="max-width:1100px;margin:24px auto;padding:0 14px"><h2>About RHODHOMES</h2><p>RHODHOMES is a property enquiry and referral network based in Irvine, California, serving people across the United States. We connect people who want to rent, buy or sell with the right next steps, and we work with referral partners who help share available rental opportunities responsibly. Enquiries are requests for information only — they do not guarantee availability, pricing or any transaction.</p></section></body>
 </html>
